@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.color-btn{
+  background-color: rgb(229, 9, 20);
+  color: white;
+  border-radius: 5px;
+}
+.color-btn:hover{
+  background-color:rgb(162, 21, 28);
+}
+.border-color{
+  border-color: rgba(128,128,128,0.7);
+}
+.wrapper{
+    padding-left: 160px;
+    padding-right: 175px;
+  }
+.logo-svg{
+    color: rgb(229, 9, 20);
+    width: 9.25rem;
+    height: 2.5rem;
+    fill: currentColor;
+    display: block;
+}
+
+  .bg-poster {
+    background-image: url('../../public/images/Poster.jpg');
+    background-size: cover;
+    height: 100vh;
+  }
+  .bg-poster-gradient{
+    height: 100vh;
+    background-color: rgb(0, 0, 0,0.5);
+  }

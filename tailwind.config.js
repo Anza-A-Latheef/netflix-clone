@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import poster from './'
-
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,8 +8,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'poster': "url('public/images/Poster.jpg')",
+      backgroundColor: {
+        '35-35-35': 'rgb(35, 35, 35)',
       },
     },
   },
