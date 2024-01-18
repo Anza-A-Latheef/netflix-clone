@@ -15,7 +15,7 @@
 }
 .wrapper{
     padding-left: 160px;
-    padding-right: 175px;
+    padding-right: 160px;
   }
 .logo-svg{
     color: rgb(229, 9, 20);
@@ -33,4 +33,11 @@
   .bg-poster-gradient{
     height: 100vh;
     background-color: rgb(0, 0, 0,0.5);
+  }
+  .bg-gif{
+   
+    background: url(https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/download-icon.gif) center  center no-repeat;
+  }
+  .shadow-custom {
+    box-shadow: 0 0 2em 0 rgba(0, 0, 0, 1); /* Adjust the color as needed */
   }

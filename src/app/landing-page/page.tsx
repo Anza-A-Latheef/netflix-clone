@@ -1,6 +1,8 @@
 import React from 'react'
 import Spotlight from './_components/spotlight'
+import Ontv from './_components/ontv'
 import Head from 'next/head'
+import Download from './_components/download'
 export default function LandingPage() {
   return (
     <div>
@@ -14,6 +16,8 @@ export default function LandingPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Spotlight/>
+      <Ontv/>
+      <Download/>
     </div>
   )
 }

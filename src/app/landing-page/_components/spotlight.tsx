@@ -3,7 +3,6 @@ import { FaAngleRight } from "react-icons/fa6";
 import Navhead from './Navhead';
 import { useState, ChangeEvent } from 'react';
 import Button from '@/app/general/button';
-import Divider from '@/app/general/divider';
 
 export default function Spotlight() {
 	const [inputValue, setInputValue] = useState('');
@@ -13,7 +12,7 @@ export default function Spotlight() {
 	  };
 
   	return (
-		<div className="bg-poster bg-cover bg-center  ">
+		<div className="bg-poster bg-cover bg-center">
 			<div className='bg-poster-gradient'>
 				<Navhead />
 				<div className='mt-[80px] pt-[100px] leading-loose text-center'>
@@ -25,12 +24,10 @@ export default function Spotlight() {
       				<form className='relative flex items-center justify-center gap-2' onSubmit={(e) => e.preventDefault()}>
 						<input type="email" name='email' className='border border-color rounded text-gray-300 bg-black bg-opacity-[0.7] px-5 py-4 w-[370px]' onFocus={() => setIsInputFocused(true)} onBlur={() => setIsInputFocused(false)} onChange={handleInputChange} /> 
 						<label htmlFor="email" className={`text-gray-300 absolute transition-all duration-700 ${isInputFocused || inputValue ? 'top-[2px] left-[410px] text-[11px]' : 'top-[15px] left-[410px]'}`} > Email address </label> 
-						<Button label="Get Started" className='flex items-center py-3 px-5 text-2xl font-medium'/>
-						{/* <button className='flex items-center  py-3 px-5 text-2xl font-medium' type='submit'> Get Started <FaAngleRight /> </button> */}
+						<Button label="Get Started" icon={<FaAngleRight />} className='flex items-center py-3 px-5 text-2xl font-medium'/>
 					</form>
     			</div>
 			</div>
-			<Divider/>
 		</div>
 	);
 }
