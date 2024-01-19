@@ -3,6 +3,8 @@ import Spotlight from './_components/spotlight'
 import Ontv from './_components/ontv'
 import Head from 'next/head'
 import Download from './_components/download'
+import Footer from './_components/footer'
+
 export default function LandingPage() {
   return (
     <div>
@@ -18,6 +20,7 @@ export default function LandingPage() {
       <Spotlight/>
       <Ontv/>
       <Download/>
+      <Footer/>
     </div>
   )
 }
