@@ -27,7 +27,6 @@
     background-image: url('../../public/images/Poster.jpg');
   }
   .bg-poster-gradient{
-    height: 100vh;
     background-color: rgb(0, 0, 0,0.5);
   }
   .bg-gif{
@@ -37,4 +36,7 @@
   .shadow-custom {
     box-shadow: 0 0 2em 0 rgba(0, 0, 0, 1); 
     background-size: 100%;
+  }
+  .bg-signin{
+    background-color: rgb(0, 0, 0,0.8);
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '@/app/general/button'
+import Link from 'next/link'
 
 export default function Navhead() {
     return (
@@ -20,7 +21,9 @@ export default function Navhead() {
                             </select>
                         </div>
                         <div className="lg:flex lg:flex-1 lg:justify-end">
-                            <Button label="Sign in" className='text-sm font-semibold leading-6 py-1 px-3 text-white'/>
+                            <Link href="/signin-page">
+                                <Button label="Sign in" className='text-sm font-semibold leading-6 py-1 px-3 text-white'/>
+                            </Link>
                         </div>
                     </div>
                 </nav>

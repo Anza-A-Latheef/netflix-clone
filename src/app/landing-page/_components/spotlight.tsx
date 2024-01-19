@@ -13,7 +13,7 @@ export default function Spotlight() {
 
   	return (
 		<div className="bg-poster bg-cover bg-center">
-			<div className='bg-poster-gradient'>
+			<div className='bg-poster-gradient h-[100vh]'>
 				<Navhead />
 				<div className='mt-[80px] pt-[100px] leading-loose text-center'>
 					<h2 className='leading-loose text-white text-5xl font-extrabold font-sans'>Unlimited movies, TV shows and more</h2>
