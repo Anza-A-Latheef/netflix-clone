@@ -1,5 +1,6 @@
 import React,{useState ,ChangeEvent} from 'react'
 import Button from '@/app/general/button'
+import Link from 'next/link';
 
 export default function SigninModal() {
 	const [inputEmailValue, setInputEmailValue] = useState('');
@@ -30,7 +31,9 @@ export default function SigninModal() {
 						<input type="password" name='password' className='border-none  rounded-md text-gray-400 bg-51-51-51 px-5 py-[13px] w-full' onFocus={() => setIsPasswordFocused(true)} onBlur={() => setIsPasswordFocused(false)} onChange={ handlePasswordChange} /> 
 						<label htmlFor="password" className={`text-gray-400 absolute duration-[0.5s] ${isPasswordFocused || inputPasswordValue ? 'top-[3x] left-[16px] text-[11px]' : 'top-[14px] left-[16px] text-[15px]'}`} > Password</label> 
 					</div>
-					<Button label="Sign In" className='text-md font-semibold leading-6 py-3 px-3 mt-[47px] text-white' type="submit"/>
+					<Link href="/movies-page" className='w-full'>
+						<Button label="Sign In" className='text-md w-full font-semibold leading-6 py-3 px-3 mt-[47px] text-white' type="submit"/>
+					</Link>
 				</form>
 				<div className='flex w-full justify-between m-[15px]'>
 					<div className='flex items-center gap-1'>
