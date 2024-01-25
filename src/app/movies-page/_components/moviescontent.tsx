@@ -3,12 +3,10 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-
 interface Movie {
 	poster_path: string;
 	title: string;
 }
-
 
 export default function MoviesContent() {
 	const [movieList, setMovieList] = useState<Movie[]>([]);

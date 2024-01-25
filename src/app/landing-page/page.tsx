@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Spotlight from './_components/spotlight'
 import Ontv from './_components/ontv'
