@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import MoviesSlider from '@/app/general/moviesSlider';
 
 interface Movie {
-	poster_path: string;
+	backdrop_path: string;
 	title: string;
 }
 
@@ -24,36 +25,40 @@ export default function MoviesContent() {
 	console.log(movieList);
 
 	const settings = {
-		dots: true,
-		infinite: true,
+		dots: false,
+		infinite: false,
 		speed: 500,
-		slidesToShow: 3,
-		slidesToScroll: 3
+		slidesToShow: 4.15,
+		slidesToScroll: 4
 	};
 	return (
 		<div>
 			<div className='bg-[#181818] px-10'>
-				<div className="bg-[#181818] py-12 max-w-[600px]">
+				<div className="bg-[#181818] pt-12 pb-10 max-w-[600px]">
 					<h1 className='text-white text-[44px] font-extrabold leading-relaxed'>Movies</h1>
 					<p className='text-white text-lg text-left font-light'>Movies move us like nothing else can, whether they're scary, funny, dramatic, romantic or anywhere in-between. So many titles, so much to experience.</p>
 				</div>
-				<div>
-					<h4 className='text-white'>Popular on Netflix</h4>
-					<div className='flex'>
-						<ul className='flex w-[100%]'>
+
+				<MoviesSlider genre="Popular on Netflix" api_link="https://image.tmdb.org/t/p/w500/"/>
+
+				{/* <div>
+					<h4 className='text-white text-xl'>Popular on Netflix</h4>
+					<div className='flex my-2'>
+						<ul className='flex w-[100%] items-center'>
 							{isLoading ? (<p>Loading movies...</p>) :
-								(<Slider className='w-[100%]' {...settings}>
-									{movieList.slice(0, 10).map((item, index) => {
-										return (<li key={index}>
-											<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} />
-											<h6 className="text-white">{item.title}</h6>
-										</li>)
+							(<Slider className='w-[100%] flex items-center' {...settings}>
+								{movieList.slice(0, 20).map((item, index) => {
+									return (<li key={index} className=' flex items-center cursor-pointer justify-center'>
+										<div className='w-[299px] h-[168px]' >
+											<img src={`https://image.tmdb.org/t/p/w500/${item. backdrop_path}`} alt={item.title} className='w-full h-full'/>
+										</div>
+										<h6 className="text-white text-center font-light mt-[10px] ">{item.title}</h6>
+									</li>)
 									})}
-								</Slider>)
-							}
+							</Slider>)}
 						</ul>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)
