@@ -5,9 +5,9 @@ export default function Footer() {
   return (
       <div className='block '>
         <Divider/>
-        <div className='block wrapper h-[397px] py-12 bg-black'>
+        <div className='flex flex-col px-[60px] h-fit lg:h-[397px] lg:px-[160px] py-12 bg-black md:px-[100px]'>
             <p className='text-gray-300 font-light text-base'>Questions? Call <u>000-800-919-1694</u></p>
-            <div className='flex py-5 gap-28'>
+            <div className='flex flex-col items-start lg:flex lg:flex-row lg:py-5 lg:gap-28 md:grid md:grid-cols-2 '>
                 <ul className='block'>
                     <li className='flex flex-col'>
                         <a href="#" className='text-gray-300 text-sm leading-10 text-nowrap'><u>FAQ</u></a>
