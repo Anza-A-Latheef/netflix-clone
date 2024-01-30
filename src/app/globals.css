@@ -1,42 +1,106 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
 
-.color-btn{
-  background-color: rgb(229, 9, 20);
-  color: white;
-  border-radius: 5px;
-}
-.color-btn:hover{
-  background-color:rgb(162, 21, 28);
-}
-.border-color{
-  border-color: rgba(128,128,128,0.7);
-}
-.wrapper{
-  padding-right: 160px;
-  padding-left: 160px;
-  }
-.logo-svg{
-    color: rgb(229, 9, 20);
-    fill: currentColor;
-    display: block;
-}
+	.color-btn{
+	background-color: rgb(229, 9, 20);
+	color: white;
+	border-radius: 5px;
+	}
+	.color-btn:hover{
+	background-color:rgb(162, 21, 28);
+	}
+	.border-color{
+	border-color: rgba(128,128,128,0.7);
+	}
+	.wrapper{
+	padding-right: 160px;
+	padding-left: 160px;
+	}
+	.logo-svg{
+		color: rgb(229, 9, 20);
+		fill: currentColor;
+		display: block;
+	}
 
-  .bg-poster {
-    background-image: url('../../public/images/Poster.jpg');
-  }
-  .bg-poster-gradient{
-    background-color: rgb(0, 0, 0,0.5);
-  }
-  .bg-gif{
-   
-    background: url(https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/download-icon.gif) center  center no-repeat;
-  }
-  .shadow-custom {
-    box-shadow: 0 0 2em 0 rgba(0, 0, 0, 1); 
-    background-size: 100%;
-  }
-  .bg-signin{
-    background-color: rgb(0, 0, 0,0.8);
-  }
+	.bg-poster {
+		background-image: url('../../public/images/Poster.jpg');
+	}
+	.bg-poster-gradient{
+		background-color: rgb(0, 0, 0,0.5);
+	}
+	.bg-gif{
+	
+		background: url(https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/download-icon.gif) center  center no-repeat;
+	}
+	.shadow-custom {
+		box-shadow: 0 0 2em 0 rgba(0, 0, 0, 1); 
+		background-size: 100%;
+	}
+	.bg-signin{
+		background-color: rgb(0, 0, 0,0.8);
+	}
+	.bg-movieposter{
+		background-image:
+			linear-gradient(90deg,#181818 10%,
+			hsla(0,0%,9%,.68) 20%,
+			hsla(0,0%,9%,.67) 25%,
+			hsla(0,0%,9%,.65) 35%,
+			hsla(0,0%,9%,.64) 40%,
+			hsla(0,0%,9%,.62) 45%,
+			hsla(0,0%,9%,.6) 50%,
+			hsla(0,0%,9%,.5) 55%,
+			hsla(0,0%,9%,0) 60%,
+			hsla(0,0%,9%,0) 65%,
+			hsla(0,0%,9%,0) 70%,
+			hsla(0,0%,9%,0) 75%,
+			hsla(0,0%,9%,0) 80%,
+			hsla(0,0%,9%,0) 85%,
+			hsla(0,0%,9%,0) 90%,
+			hsla(0,0%,9%,0) 95%,
+			hsla(0,0%,9%,0)),
+			url(../../public/images/unicornposter.jpg);
+		background-size:cover;
+		height: 100vh;
+		background-repeat: no-repeat;
+		display: flex;
+		padding-bottom: 55%;
+	}
+	/* background-image:linear-gradient(90deg,#181818 10%,
+	hsla(0,0%,9%,.98) 20%,
+	hsla(0,0%,9%,.97) 25%,
+	hsla(0,0%,9%,.95) 35%,
+	hsla(0,0%,9%,.94) 40%,
+	hsla(0,0%,9%,.92) 45%,
+	hsla(0,0%,9%,.9) 50%,
+	hsla(0,0%,9%,.87) 55%,
+	hsla(0,0%,9%,.82) 60%,
+	hsla(0,0%,9%,.75) 65%,
+	hsla(0,0%,9%,.63) 70%,
+	hsla(0,0%,9%,.45) 75%,
+	hsla(0,0%,9%,.27) 80%,
+	hsla(0,0%,9%,.15) 85%,
+	hsla(0,0%,9%,.08) 90%,
+	hsla(0,0%,9%,.03) 95%,
+	hsla(0,0%,9%,0)), url(../../public/images/unicornposter.jpg); */
+
+	.wrapper-genre{
+		padding-inline: 70px;
+	}
+	.gradient-trailer-box{
+		background-image: linear-gradient(90deg,#333 5%,#181818 95%);
+		box-shadow: 8px 5px 16px 0 rgba(0,0,0,.37);
+	}
+
+	.border-gradient-gray {
+		border-image-source: linear-gradient(90deg,#777 0,rgba(51,51,51,.5) 50%,#777);
+	  }
+	  
+	  .only-vertical {
+		border-left: 0;
+		border-right: 0;
+	  }
+	  .border-gradient {
+		border-image-slice: 1;
+		border-width: 1px;
+	}

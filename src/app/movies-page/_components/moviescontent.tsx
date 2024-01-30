@@ -11,20 +11,19 @@ export default function MoviesContent() {
 					<p className='text-white text-lg text-left font-light'>Movies move us like nothing else can, whether they're scary, funny, dramatic, romantic or anywhere in-between. So many titles, so much to experience.</p>
 				</div>
 				<div className="flex flex-col">
-					<MoviesSlider genre="Popular on Netflix" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Action Movies" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Made in India" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Food For Hungry Brains" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="US TV Dramas" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Hollywood Movies" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Released in the Past Year" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Critically Acclaimed Movies" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="K-Dramas" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Dramas" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="We Think You'll Love These" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="True Crime Docuseries" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Animation" api_link="https://image.tmdb.org/t/p/w500/"/>
-					<MoviesSlider genre="Hindi-Language Movies" api_link="https://image.tmdb.org/t/p/w500/"/>
+					<MoviesSlider genreId={16}/>
+					<MoviesSlider genreId={28}/>
+					<MoviesSlider genreId={35}/>
+					<MoviesSlider genreId={80}/>
+					<MoviesSlider genreId={10751}/>
+					<MoviesSlider genreId={10763}/>
+					<MoviesSlider genreId={12}/>
+					<MoviesSlider genreId={99}/>
+					<MoviesSlider genreId={18}/>
+					<MoviesSlider genreId={14}/>
+					<MoviesSlider genreId={36}/>
+					<MoviesSlider genreId={27}/>
+					<MoviesSlider genreId={10402}/>
 				</div>
 			</div>
 				<SigninFooter/>
