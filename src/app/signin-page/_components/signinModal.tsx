@@ -34,7 +34,7 @@ const SigninModal: React.FC<SigninModalProps> = () => {
 		signInWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => {
 			const user = userCredential.user;
-			router.push('/movies-page')
+			router.push('/moviespage')
 		})
 		.catch((error) => {
 			const errorMessage = error.message;

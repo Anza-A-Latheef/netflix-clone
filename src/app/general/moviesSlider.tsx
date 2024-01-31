@@ -5,13 +5,14 @@
 	import 'slick-carousel/slick/slick-theme.css';
 
 	interface Genre {
-	id: number;
-	name: string;
+		id: number;
+		name: string;
 	}
 
 	interface Movie {
-	backdrop_path: string;
-	title: string;
+		id:number;
+		backdrop_path: string;
+		title: string;
 	}
 
 	interface SliderProps {
@@ -47,6 +48,8 @@
 	useEffect(() => {
 		fetchGenre();
 		movies();
+		console.log(movies);
+		
 	}, []);
 
 	const settings = {
@@ -59,37 +62,39 @@
 
 	return (
 	<div className='mb-[30px]'>
-		<Link href='/movieTrailer' >
 			<h4 className='text-white text-xl'>
-			{isLoading ? 'Loading movies...' : genre}
+				{isLoading ? 'Loading movies...' : genre}
 			</h4>
 			<div className='flex my-2 '>
 			<ul className='flex w-[100%] items-center'>
 				{isLoading ? (
-				<p>Loading movies...</p>
+					<p>Loading movies...</p>
 				) : (
-				<Slider className='w-[100%] flex items-center' {...settings}>
+					<Slider className='w-[100%] flex items-center' {...settings}>
 					{movieList.map((item, index) => {
-					return (
-						<li key={index} className=' flex items-center cursor-pointer justify-center'>
-						<div className='w-[299px] h-[168px]'>
-							<img
-							src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-							alt={item.title}
-							className='w-full h-full'
-							/>
-						</div>
-						<h6 className='text-white text-center font-light mt-[10px]'>{item.title}</h6>
-						</li>
+						return (
+						<Link key={index} href={`/moviespage/[id]`} as={`/moviespage/${item.id}`}>
+							<li key={index} className=' flex flex-col items-center cursor-pointer justify-center'>
+							<div className='w-[299px] h-[168px]'>
+								<img
+								src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+								alt={item.title}
+								className='w-full h-full'
+								/>
+							</div>
+							<h6 className='text-white text-center font-light mt-[10px]'>{item.title}</h6>
+							</li>
+						</Link>
 					);
 					})}
-				</Slider>
+					</Slider>
 				)}
 			</ul>
 			</div>
-		</Link>
 	</div>
 );
 };
 
 	export default MoviesSlider;
+
+

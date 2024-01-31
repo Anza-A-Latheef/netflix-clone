@@ -1,42 +1,119 @@
-import React from 'react'
-import MoviesHead from '../movies-page/_components/movieshead'
-import Button from '../general/button'
-import SigninFooter from '../signin-page/_components/signinFooter'
-import movietitle from '../../../public/images/unicorntitle.png'
+"use client"
+import React,{useEffect,useState} from 'react'
+import MoviesHead from '../_components/movieshead'
+import Button from '../../general/button'
+import SigninFooter from '../../signin-page/_components/signinFooter'
+import movietitle from '../../../../public/images/unicorntitle.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import img from '../../../public/images/Poster.jpg'
+import img from '../../../../public/images/Poster.jpg'
 
-export default function MovieTrailer() {
-      
+interface Detail {
+    adult: boolean;
+    genres: { name: string }[];
+    release_date?: string;
+    logo_path?: string;
+    original_title: string;
+    id: number;
+    backdrop_path: string;
+    title: string;
+    name: string;
+    runtime: number;
+}
+
+interface LogoDetail {
+    logos: { file_path: string }[];
+  }
+
+  function toHoursAndMinutes(totalMinutes:number) {
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+  
+    return `${hours}h ${minutes}min `;
+  }
+  
+  export default function MovieTrailer({ params }: { params: { moviespage: string } }) {
+    const [detail, setDetail] = useState<Detail | null>(null);
+    const [logoImage, setLogoImage] = useState<LogoDetail | null>(null);
+
+    const details = async () => {
+      try {
+        const response = await 
+        fetch(`https://api.themoviedb.org/3/movie/${params.moviespage}?api_key=cebda4e0a93282ebe44fc651ad0006c9`);
+        const json = await response.json();
+  
+        if (json) {
+          setDetail(json);
+          console.log(json);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const logodetails = async () => {
+      try {
+        const response = await 
+        fetch(`
+        https://api.themoviedb.org/3/movie/${params.moviespage}/images?api_key=cebda4e0a93282ebe44fc651ad0006c9`);
+        const json = await response.json();
+  
+        if (json) {
+            setLogoImage(json);
+          console.log(json.logos[0].file_path);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    useEffect(() => {
+      details();
+      logodetails();
+    }, []);
+  
+    if (!detail) {
+      return <p>Loading...</p>;
+    }
+  
 return (
     <div className='bg-[#181818] flex flex-col'>
         <div className='block'>
-            <div className='flex flex-col '>
+            <div className='flex flex-col'>
                 <div className="head">
                     <MoviesHead/>
                 </div> 
-                <div className='relative wrapper-genre bg-movieposter flex flex-col h-fit'>
-                    <div className="serieslogo w-[450px] h-[102px] mb-40px py-28" >
-                        <Image src={movietitle} alt="Movie poster" />
+                <div style={{background: `linear-gradient( 90deg, #181818 10%, hsla(0, 0%, 9%, .68) 20%, hsla(0, 0%, 9%, .67) 25%, hsla(0, 0%, 9%, .65) 35%, hsla(0, 0%, 9%, .64) 40%, hsla(0, 0%, 9%, .62) 45%, hsla(0, 0%, 9%, .6) 50%, hsla(0, 0%, 9%, .5) 55%, hsla(0, 0%, 9%, 0) 60%, hsla(0, 0%, 9%, 0) 65%, hsla(0, 0%, 9%, 0) 70%, hsla(0, 0%, 9%, 0) 75%, hsla(0, 0%, 9%, 0) 80%, hsla(0, 0%, 9%, 0) 85%, hsla(0, 0%, 9%, 0) 90%, hsla(0, 0%, 9%, 0) 95%, hsla(0, 0%, 9%, 0) ),url(https://image.tmdb.org/t/p/original/${detail. backdrop_path})`,
+                            backgroundRepeat:"no-repeat",
+                            backgroundSize:"cover",
+                            backgroundPosition:"center" }} 
+                    className='relative wrapper-genre bg-movieposter flex flex-col w-screen h-[100vh]'>
+                    <div className="serieslogo w-fit h-[52px] py-28">
+                        {logoImage && logoImage.logos && logoImage.logos[0] && (
+                            <Image
+                            src={`https://image.tmdb.org/t/p/w500${logoImage.logos[0].file_path}`}
+                            alt="Production Company Logo"
+                            width={250}
+                            height={35}
+                            />
+                        )}
                     </div>
                     <div className='w-[45%] py-12'>
-                        <h4 className='mt-[10px] text-white text-[24px] font-medium leading-[30px]'>Unicorn Academy</h4>
+                        <h4 className='mt-[10px] text-white text-[24px] font-medium leading-[30px]'>{detail.original_title}</h4>
                         <div className="flex flex-col">
-                            <p className='text-[#a3a3a3] text-[14px] font-medium leading-[18px] my-4'>2023| <span className='px-[5px] border border-1 border-[#a1a1a1]'>U/A 7+</span> | 1 Season | Kids</p>
+                            <p className='text-[#a3a3a3] text-[14px] font-medium leading-[18px] my-4'>{detail?.release_date?.substring(0, 4) ?? 'N/A'} | <span className='px-[5px] border border-1 border-[#a1a1a1]'>{detail.adult ? 'A' : 'U/A +7'}</span> | {toHoursAndMinutes(detail.runtime)} | {detail.genres[0].name}</p>
                             <p className='text-white text-[16px] leading-[22px] w-max-full pt-[9px] font-normal'>When a dark force threatens to destroy Unicorn Island, a brave teen and her five schoolmates must rise up to protect their beloved magical academy.</p>
                             <h6 className='pt-[16px] text-[16px] text-white'><span className='text-[#a3a3a3] '>Starring:</span> Sara Garcia,Sadie Laflamme-Snow,Kamaia Fairburn</h6>
                         </div>
                     </div>
-                </div>
-                <div className='relative flex items-center justify-between p-3 bottom-12 gradient-trailer-box mx-[70px] mb-9'>
-                    <div className="flex items-center">
-                        <svg className="value-prop-logo w-[21px] h-[38px]" focusable="false" viewBox="225 0 552 1000" aria-hidden="true" data-uia="n-logo"><defs><radialGradient id="eaf463bf-bf7d-46c8-a1d5-4e510cb692a6-a" r="75%" gradientTransform="matrix(.38 0 .5785 1 .02 0)"><stop offset="60%" stop-opacity=".3"></stop><stop offset="90%" stop-opacity=".05"></stop><stop offset="100%" stop-opacity="0"></stop></radialGradient></defs><path d="M225 0v1000c60-8 138-14 198-17V0H225" fill="#b1060e"></path><path d="M579 0v983c71 3 131 9 198 17V0H579" fill="#b1060e"></path><path d="M225 0v200l198 600V557l151 426c76 3 136 9 203 17V800L579 200v240L423 0H225" fill="url(#eaf463bf-bf7d-46c8-a1d5-4e510cb692a6-a)"></path><path d="M225 0l349 983c76 3 136 9 203 17L423 0H225" fill="#e50914"></path></svg>
-                        <h5 className='text-[16px] text-white font-medium mx-2 '>Watch all you want</h5>
+                    <div className='absolute flex items-center justify-between p-3 bottom-[-2%] gradient-trailer-box w-[85vw] wrapper-genre '>
+                        <div className="flex items-center">
+                            <svg className="value-prop-logo w-[21px] h-[38px]" focusable="false" viewBox="225 0 552 1000" aria-hidden="true" data-uia="n-logo"><defs><radialGradient id="eaf463bf-bf7d-46c8-a1d5-4e510cb692a6-a" r="75%" gradientTransform="matrix(.38 0 .5785 1 .02 0)"><stop offset="60%" stop-opacity=".3"></stop><stop offset="90%" stop-opacity=".05"></stop><stop offset="100%" stop-opacity="0"></stop></radialGradient></defs><path d="M225 0v1000c60-8 138-14 198-17V0H225" fill="#b1060e"></path><path d="M579 0v983c71 3 131 9 198 17V0H579" fill="#b1060e"></path><path d="M225 0v200l198 600V557l151 426c76 3 136 9 203 17V800L579 200v240L423 0H225" fill="url(#eaf463bf-bf7d-46c8-a1d5-4e510cb692a6-a)"></path><path d="M225 0l349 983c76 3 136 9 203 17L423 0H225" fill="#e50914"></path></svg>
+                            <h5 className='text-[16px] text-white font-medium mx-2 '>Watch all you want</h5>
+                        </div>
+                        <Button label="JOIN NOW" className="text-xs py-3 px-8" />
                     </div>
-                    <Button label="JOIN NOW" className="text-xs py-3 px-8" />
                 </div>
-                <div className="border-gradient-gray only-vertical border-gradient mx-[70px] flex flex-col items-center justify-center">
+                <div className="border-gradient-gray only-vertical border-gradient mx-[70px] mt-20 flex flex-col items-center justify-center">
                     <p className=' text-[#a3a3a3] my-[20px] text-center text-base font-normal leading-5 max-w-[500px]'>This fantastical animated adventure series is based on the books by Julie Sykes.</p>
                 </div>
                 <div className="wrapper-genre flex flex-col mt-16">
@@ -46,7 +123,7 @@ return (
                             <li className='flex flex-col'>
                                 <button className="bg-none border-0 m-[5px] w-fit p-0 text-left outline-none">
                                     <div className="relative mb-3">
-                                        <Image
+                                        {/* <Image
                                             src="https://occ-0-6058-3663.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABRjwJKeFf07g3X4TmzGOaEk5zGpWkyMZP1kEAzY8QpycE7wzme_pnjkadg-MGhqH4XnkFe6wcTIZ-Sjg2g1aFOGoULCDgWWoppZZPvgM-j6hmYwpktfe04Tn.jpg?r=8be"
                                             alt=""
                                             role="presentation"
@@ -54,7 +131,7 @@ return (
                                             loading="lazy"
                                             width={420}
                                             height={240}
-                                        />
+                                        /> */}
                                         <svg viewBox="0 0 50 50" className="absolute bottom-[15px] h-12 left-[15px]" data-uia="additional-video-play-icon">
                                             <g fill="none" fillRule="nonzero">
                                                 <path fill="#fff" d="M25 50C11.2 50 0 38.8 0 25S11.2 0 25 0s25 11.2 25 25-11.2 25-25 25z" className="base"></path>
@@ -68,7 +145,7 @@ return (
                             <li className='flex flex-col'>
                                 <button className="bg-none border-0 m-[5px] w-fit p-0 text-left outline-none">
                                     <div className="relative mb-3">
-                                        <Image
+                                        {/* <Image
                                             src="https://occ-0-6058-3663.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABRjwJKeFf07g3X4TmzGOaEk5zGpWkyMZP1kEAzY8QpycE7wzme_pnjkadg-MGhqH4XnkFe6wcTIZ-Sjg2g1aFOGoULCDgWWoppZZPvgM-j6hmYwpktfe04Tn.jpg?r=8be"
                                             alt=""
                                             role="presentation"
@@ -76,7 +153,7 @@ return (
                                             loading="lazy"
                                             width={420}
                                             height={240}
-                                        />
+                                        /> */}
                                         <svg viewBox="0 0 50 50" className="absolute bottom-[15px] h-12 left-[15px]" data-uia="additional-video-play-icon">
                                             <g fill="none" fillRule="nonzero">
                                                 <path fill="#fff" d="M25 50C11.2 50 0 38.8 0 25S11.2 0 25 0s25 11.2 25 25-11.2 25-25 25z" className="base"></path>
@@ -90,7 +167,7 @@ return (
                             <li className='flex flex-col'>
                                 <button className="bg-none border-0 m-[5px] w-fit p-0 text-left outline-none">
                                     <div className="relative mb-3">
-                                        <Image
+                                        {/* <Image
                                             src="https://occ-0-6058-3663.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABRjwJKeFf07g3X4TmzGOaEk5zGpWkyMZP1kEAzY8QpycE7wzme_pnjkadg-MGhqH4XnkFe6wcTIZ-Sjg2g1aFOGoULCDgWWoppZZPvgM-j6hmYwpktfe04Tn.jpg?r=8be"
                                             alt=""
                                             role="presentation"
@@ -98,7 +175,7 @@ return (
                                             loading="lazy"
                                             width={420}
                                             height={240}
-                                        />
+                                        /> */}
                                         <svg viewBox="0 0 50 50" className="absolute bottom-[15px] h-12 left-[15px]" data-uia="additional-video-play-icon">
                                             <g fill="none" fillRule="nonzero">
                                                 <path fill="#fff" d="M25 50C11.2 50 0 38.8 0 25S11.2 0 25 0s25 11.2 25 25-11.2 25-25 25z" className="base"></path>
@@ -242,5 +319,5 @@ return (
         </div>
         <SigninFooter/>
     </div>
-)
+);
 }
