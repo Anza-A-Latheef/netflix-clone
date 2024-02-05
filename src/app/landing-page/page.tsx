@@ -8,7 +8,7 @@ import Footer from './_components/footer'
 
 export default function LandingPage() {
   return (
-    <div>
+    <>
       <Head>
         <title>Netflix Clone</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -22,6 +22,6 @@ export default function LandingPage() {
       <Ontv/>
       <Download/>
       <Footer/>
-    </div>
+    </>
   )
 }

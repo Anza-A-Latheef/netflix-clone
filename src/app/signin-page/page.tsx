@@ -4,8 +4,8 @@ import BackgroundSignin from './_components/background'
 
 export default function Signin() {
   return (
-    <div>
+    <>
       <BackgroundSignin/>
-    </div>
+    </>
   )
 }

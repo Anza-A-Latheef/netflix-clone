@@ -4,7 +4,7 @@
 
 	export default function BackgroundSignin() {
 	return (
-		<div>
+		<>
 			<div className="bg-poster bg-cover">
 				<div className='bg-poster-gradient'>
 					<div className="flex lg:flex-1">
@@ -16,6 +16,6 @@
 					<SigninFooter/>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 	}

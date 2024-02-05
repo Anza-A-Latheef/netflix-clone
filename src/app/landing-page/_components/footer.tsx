@@ -3,7 +3,7 @@ import Divider from '@/app/general/divider'
 
 export default function Footer() {
   return (
-      <div className='block '>
+    <div className='block '>
         <Divider/>
         <div className='flex flex-col px-[60px] h-fit lg:h-[397px] lg:px-[160px] py-12 bg-black md:px-[100px]'>
             <p className='text-gray-300 font-light text-base'>Questions? Call <u>000-800-919-1694</u></p>

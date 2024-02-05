@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Navhead() {
     return (
-        <div>
+        <>
             <header className='bg-transparent py-[22px]'>
                 <nav className=" flex justify-between px-[50px] md:px-24 md:w-full md:justify-between lg:wrapper lg:flex lg:justify-between lg:items-center lg:pl-[160px] lg:pr-[160px] " aria-label="Global">
                     <div className="flex lg:flex-1">
@@ -28,6 +28,6 @@ export default function Navhead() {
                     </div>
                 </nav>
             </header>
-        </div>
+        </>
   )
 }

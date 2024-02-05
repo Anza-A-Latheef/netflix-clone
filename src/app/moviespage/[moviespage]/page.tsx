@@ -36,64 +36,42 @@ import Upcoming from './upcoming'
     }
     
     export default function MovieTrailer({ params }: { params: { moviespage: string } }) {
+        const API_KEY = 'cebda4e0a93282ebe44fc651ad0006c9';
         const [detail, setDetail] = useState<Detail | null>(null);
         const [logoImage, setLogoImage] = useState<LogoDetail | null>(null);
         const [starList, setStarList] = useState<Starring | null>(null);
 
-        const details = async () => {
+        const fetchData = async (url: string) => {
             try {
-                const response = await 
-                fetch(`https://api.themoviedb.org/3/movie/${params.moviespage}?api_key=cebda4e0a93282ebe44fc651ad0006c9`);
+                const response = await fetch(url);
                 const json = await response.json();
-        
-                if (json) {
-                setDetail(json);
-                console.log(json);
-                }
+                return json;
             } catch (error) {
                 console.error(error);
+                return null;
             }
         };
-
-        const logodetails = async () => {
-            try {
-                const response = await 
-                fetch(`
-                https://api.themoviedb.org/3/movie/${params.moviespage}/images?api_key=cebda4e0a93282ebe44fc651ad0006c9`);
-                const json = await response.json();
+        useEffect(() => {
+            const fetchDataAsync = async () => {
+                const [detailData, logoData, starData] = await Promise.all([
+                    fetchData(`https://api.themoviedb.org/3/movie/${params.moviespage}?api_key=${API_KEY}`),
+                    fetchData(`https://api.themoviedb.org/3/movie/${params.moviespage}/images?api_key=${API_KEY}`),
+                    fetchData(`https://api.themoviedb.org/3/movie/${params.moviespage}/credits?api_key=${API_KEY}`),
+                ]);
         
-                if (json &&json.logos) {
-                    const enOnly = json.logos.filter(({ iso_639_1 }: { iso_639_1: string }) => iso_639_1 === 'en');
+                if (detailData) setDetail(detailData);
+                if (logoData && logoData.logos) {
+                    const enOnly = logoData.logos.filter(({ iso_639_1 }: { iso_639_1: string }) => iso_639_1 === 'en');
                     setLogoImage({ logos: enOnly });
                 }
-                
-            } catch (error) {
-                console.error(error);
-            }
-        };
+                if (starData) setStarList(starData);
+            };
+        
+            fetchDataAsync();
+        }, [params.moviespage]);
 
-        const starring = async () => {
-            try {
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${params.moviespage}/credits?api_key=cebda4e0a93282ebe44fc651ad0006c9`);
-            const json = await response.json();
-        
-            if (json) {
-                setStarList(json);
-            }
-            } catch (error) {
-            console.error(error);
-            }
-        };
-    
-        useEffect(() => {
-            details();
-            logodetails();
-            starring();
-        }, []);
-        
-    
-        if (!detail) {
-        return <p>Loading...</p>;
+        if (!detail || !logoImage || !starList) {
+            return <p>Loading...</p>;
         }
 
 
@@ -111,7 +89,7 @@ import Upcoming from './upcoming'
                     <div className="head">
                         <MoviesHead/>
                     </div> 
-                    <div style={{background: `linear-gradient( 90deg, #181818 10%, hsla(0, 0%, 9%, .68) 20%, hsla(0, 0%, 9%, .67) 25%, hsla(0, 0%, 9%, .65) 35%, hsla(0, 0%, 9%, .64) 40%, hsla(0, 0%, 9%, .62) 45%, hsla(0, 0%, 9%, .6) 50%, hsla(0, 0%, 9%, .5) 55%, hsla(0, 0%, 9%, 0) 60%, hsla(0, 0%, 9%, 0) 65%, hsla(0, 0%, 9%, 0) 70%, hsla(0, 0%, 9%, 0) 75%, hsla(0, 0%, 9%, 0) 80%, hsla(0, 0%, 9%, 0) 85%, hsla(0, 0%, 9%, 0) 90%, hsla(0, 0%, 9%, 0) 95%, hsla(0, 0%, 9%, 0) ),url(https://image.tmdb.org/t/p/original/${detail. backdrop_path})`, backgroundRepeat:"no-repeat", backgroundSize:"cover", backgroundPosition:"center" }}  className='relative wrapper-genre bg-movieposter flex flex-col justify-center w-screen h-[100vh]'>
+                    <div style={{background: `linear-gradient( 90deg, #181818 10%, hsla(0, 0%, 9%, .68) 20%, hsla(0, 0%, 9%, .67) 25%, hsla(0, 0%, 9%, .65) 35%, hsla(0, 0%, 9%, .64) 40%, hsla(0, 0%, 9%, .62) 45%, hsla(0, 0%, 9%, .6) 50%, hsla(0, 0%, 9%, .5) 55%, hsla(0, 0%, 9%, 0) 60%, hsla(0, 0%, 9%, 0) 65%, hsla(0, 0%, 9%, 0) 70%, hsla(0, 0%, 9%, 0) 75%, hsla(0, 0%, 9%, 0) 80%, hsla(0, 0%, 9%, 0) 85%, hsla(0, 0%, 9%, 0) 90%, hsla(0, 0%, 9%, 0) 95%, hsla(0, 0%, 9%, 0) ),url(https://image.tmdb.org/t/p/original/${detail. backdrop_path})`, backgroundRepeat:"no-repeat", backgroundSize:"cover", backgroundPosition:"center" }}  className='relative wrapper-genre bg-movieposter flex flex-col justify-center  h-[100vh]'>
                         <div className="serieslogo w-fit h-[52px] flex items-end ">
                             {logoImage && logoImage.logos && logoImage.logos[0] && (
                                 <Image src={`https://image.tmdb.org/t/p/w500${logoImage.logos[0].file_path}`} alt="Production Company Logo" width={140} height={140} />
@@ -167,3 +145,4 @@ import Upcoming from './upcoming'
         </div>
     );
     }
+

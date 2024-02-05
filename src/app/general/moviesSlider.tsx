@@ -1,4 +1,4 @@
-	import React, { useState, useEffect } from 'react';
+	import React, { useState, useEffect ,memo } from 'react';
 	import Slider from 'react-slick';
 	import Link from 'next/link';
 	import 'slick-carousel/slick/slick.css';
@@ -18,8 +18,8 @@
 	interface SliderProps {
 	genreId: number;
 	}
-
-	const MoviesSlider: React.FC<SliderProps> = ({ genreId }) => {
+	
+	const MoviesSlider: React.FC<SliderProps> = memo(({ genreId }) => {
 	const [movieList, setMovieList] = useState<Movie[]>([]);
 	const [genre, setGenre] = useState<string>('');
 	const [isLoading, setIsLoading] = useState(true);
@@ -93,7 +93,7 @@
 			</div>
 	</div>
 );
-};
+		});
 
 	export default MoviesSlider;
 

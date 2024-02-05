@@ -20,7 +20,7 @@ const handleLogout = async () => {
 	}
 };
 return (
-	<div>
+	<>
 		<div className='bg-black flex justify-between items-center py-1 px-7'>
 			<Link href='/landing-page'>
 				<div className='w-[150px] h-[50px] flex items-center justify-center'>
@@ -33,7 +33,7 @@ return (
 				<button className='text-white bg-transparent hover:bg-[#9696964d] text-xs border-[1px] uppercase border-[#888] py-2 px-3 rounded-sm' onClick={handleLogout}> Sign out</button>
 			</div>
 		</div>
-	</div>
+	</>
 );
 };
 export default MoviesHead;

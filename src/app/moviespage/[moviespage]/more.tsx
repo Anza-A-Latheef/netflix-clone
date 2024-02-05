@@ -15,7 +15,6 @@ interface SimilarMovie {
 export default function More({ movieid }: MoreProps) {
     const [moreMovies, setMoreMovies] = useState<SimilarMovie[]>([]);
     const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchMoreMovies = async () => {
@@ -30,7 +29,6 @@ export default function More({ movieid }: MoreProps) {
                 }
             } catch (error) {
                 console.error(error);
-                // setError('Failed to fetch data');
             } finally {
                 setLoading(false);
             }
@@ -49,9 +47,9 @@ export default function More({ movieid }: MoreProps) {
         <div className='wrapper-genre mt-12'>
             <h4 className='text-white text-[27px] font-normal leading-8'>More like this</h4>
             <ul className='grid grid-cols-3 '>
-                {filteredMovies.slice(0,12).map((movie) => (
+                {filteredMovies.slice(0, 12).map((movie) => (
                     <li key={movie.id} className='m-[5px]'>
-                        <Link href={`/movieTrailer/${movie.id}`}>
+                        <Link href={`/moviespage/[id]`} as={`/moviespage/${movie.id}`}>
                             <Image src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} width={396} height={223} />
                         </Link>
                     </li>
@@ -60,5 +58,3 @@ export default function More({ movieid }: MoreProps) {
         </div>
     );
 }
-
-

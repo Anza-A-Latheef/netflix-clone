@@ -5,7 +5,7 @@ import SignupFooter from './SignupFooter'
 
 export default function SignupCover() {
   return (
-    <div>
+    <>
         <div className="header flex items-center  p-4 justify-between border-b-[1px] border-[#cccccc] border-opacity-80 ">
             <div className="signuplogo flex ml-6 items-center">
                 <a href="/landing-page" className="h-full w-full cursor-auto">
@@ -20,6 +20,6 @@ export default function SignupCover() {
         <div>
             <SignupFooter/>
         </div>
-    </div>
+    </>
   )
 }
