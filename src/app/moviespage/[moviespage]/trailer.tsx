@@ -83,7 +83,7 @@
                         <li key={index} className="flex flex-col w-33%">
                             <button className="bg-none border-0 m-[5px] w-fit p-0 text-left outline-none" onClick={() => handlePosterClick(index)} >
                                 <div className="relative mb-3">
-                                    <Image src={`https://image.tmdb.org/t/p/w500${poster.file_path}`} alt={`Poster ${index + 1}`} width={400} height={240} className="relative object-cover" />
+                                    <Image src={`https://image.tmdb.org/t/p/w500${poster.file_path}`} alt={`Poster ${index + 1}`} width={250} height={240} className="relative object-cover" />
                                 </div>
                                 <span className="text-white mt-12" data-uia="additional-video-title"> Chapter {index + 1} Trailer: {title} </span>
                             </button>
