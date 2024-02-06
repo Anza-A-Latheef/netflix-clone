@@ -25,6 +25,7 @@
 	const [genre, setGenre] = useState<string>('');
 	const [isLoading, setIsLoading] = useState(true);
 
+	MoviesSlider.displayName = 'MoviesSlider';
 
 	const fetchGenre = () => {
 		fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=cebda4e0a93282ebe44fc651ad0006c9')
@@ -51,7 +52,7 @@
 		movies();
 		console.log(movies);
 		
-	}, [genreId]);
+	}, [genreId, fetchGenre, movies]);
 
 	const settings = {
 		dots: false,
@@ -96,5 +97,3 @@
 		});
 
 	export default MoviesSlider;
-
-
