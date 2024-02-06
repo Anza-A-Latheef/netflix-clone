@@ -51,7 +51,7 @@
 		movies();
 		console.log(movies);
 		
-	}, [movies,fetchGenre]);
+	}, [genreId]);
 
 	const settings = {
 		dots: false,
