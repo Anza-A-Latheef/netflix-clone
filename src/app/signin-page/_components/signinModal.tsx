@@ -72,7 +72,7 @@ const SigninModal: React.FC<SigninModalProps> = () => {
 				</div>
 				<div className='py-12 flex flex-col'>
 					<p className='text-[#737373] text-[16px]'>New to Netflix?<Link href="/Signup-page"> <span className='text-white hover:underline text-[16px] cursor-pointer'>Sign up now.</span></Link></p>
-					<small className='mt-[10px] text-[#8c8c8c]'>This page is protected by Google reCAPTCHA to ensure you're not a bot. <span className='text-blue-500 hover:underline'>Learn more</span></small>
+					<small className='mt-[10px] text-[#8c8c8c]'>This page is protected by Google reCAPTCHA to ensure you re not a bot. <span className='text-blue-500 hover:underline'>Learn more</span></small>
 				</div>
 			</div>
 		</div>

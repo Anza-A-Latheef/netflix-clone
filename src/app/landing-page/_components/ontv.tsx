@@ -10,7 +10,7 @@ export default function Ontv() {
             <div className='flex flex-col sm:max-lg:py-[20px] sm:max-lg:items-center px-[50px] lg:flex lg:flex-row lg:px-[50px] xl:px-[160px] h-[522px] bg-black'>
                 <div className="flex flex-col sm:max-lg:items-center lg:h-full lg:justify-center">
                     <h2 className='text-white font-bold text-[30px] lg:font-extrabold lg:text-[45px] xl:text-[50px] leading-relaxed'>Enjoy on your TV</h2>
-                    <p className='sm:max-lg:text-center text:[21px] text-white lg:text-[23px] font-normal'>Watch on smart TV's, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players and more</p>
+                    <p className='sm:max-lg:text-center text:[21px] text-white lg:text-[23px] font-normal'>Watch on smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players and more</p>
                 </div>
                 <div className="lg:h-full">
                     <div className='relative w-[425px] h-[176px] lg:w-[508px] lg:h-[381px] lg:pt-[60px]'>

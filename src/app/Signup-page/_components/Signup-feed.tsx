@@ -137,7 +137,7 @@ const SignupFeed: React.FC<SignupFeedProps> = function SignupFeed() {
         <div className='py-8 flex flex-col'>
           <p className='text-[#737373] text-[16px]'> Already have an account? {' '} <Link href="/signin-page" ><span className='text-[#737373] hover:underline  hover:text-black text-[16px] cursor-pointer'>Sign in.</span></Link></p>
           <small className='mt-[10px] text-[#8c8c8c]'>
-            This page is protected by Google reCAPTCHA to ensure you're not a bot. <span className='text-blue-500 hover:underline'>Learn more</span>
+            This page is protected by Google reCAPTCHA to ensure you re not a bot. <span className='text-blue-500 hover:underline'>Learn more</span>
           </small>
         </div>
       </div>

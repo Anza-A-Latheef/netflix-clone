@@ -1,6 +1,7 @@
 	import React, { useState, useEffect ,memo } from 'react';
 	import Slider from 'react-slick';
 	import Link from 'next/link';
+	import Image from 'next/image';
 	import 'slick-carousel/slick/slick.css';
 	import 'slick-carousel/slick/slick-theme.css';
 
@@ -50,7 +51,7 @@
 		movies();
 		console.log(movies);
 		
-	}, []);
+	}, [movies,fetchGenre]);
 
 	const settings = {
 		dots: false,
@@ -76,10 +77,9 @@
 						<Link key={index} href={`/moviespage/[id]`} as={`/moviespage/${item.id}`}>
 							<li key={index} className=' flex flex-col items-center cursor-pointer justify-center'>
 							<div className='w-[299px] h-[168px]'>
-								<img
+								<Image
 								src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-								alt={item.title}
-								className='w-full h-full'
+								alt={item.title} width={299} height={168}
 								/>
 							</div>
 							<h6 className='text-white text-center font-light mt-[10px]'>{item.title}</h6>
