@@ -80,12 +80,18 @@
             <div className="block my-4">
                 <ul className="flex items-center w-full">
                     {posters && posters.posters && posters.posters.slice(0, 3).map((poster, index) => (
-                        <li key={index} className="flex flex-col w-33%">
-                            <button className="bg-none border-0 m-[5px] w-fit p-0 text-left outline-none" onClick={() => handlePosterClick(index)} >
-                                <div className="relative mb-3">
-                                    <Image src={`https://image.tmdb.org/t/p/w500${poster.file_path}`} alt={`Poster ${index + 1}`} width={250} height={240} className="relative object-cover" />
+                        <li key={index} className="flex flex-col ">
+                            <button className="bg-none border-0 m-[5px] w-min p-0 text-left outline-none " onClick={() => handlePosterClick(index)} >
+                                <div className="w-[255px] relative mb-3">
+                                    <Image src={`https://image.tmdb.org/t/p/w500${poster.file_path}`} alt={`Poster ${index + 1}`} width={245} height={240} className="relative object-cover" />
+                                        <svg viewBox="0 0 50 50" className="absolute bottom-[15px] h-12 left-[15px]" data-uia="additional-video-play-icon">
+                                            <g fill="none" fillRule="nonzero">
+                                                <path fill="#fff" d="M25 50C11.2 50 0 38.8 0 25S11.2 0 25 0s25 11.2 25 25-11.2 25-25 25z" className="base"></path>
+                                                <path fill="#000" d="M35.3 25l-15.6-8.6v17.2z" className="triangle"></path>
+                                            </g>
+                                        </svg>
                                 </div>
-                                <span className="text-white mt-12" data-uia="additional-video-title"> Chapter {index + 1} Trailer: {title} </span>
+                                <span className="text-white mt-12 text-wrap " data-uia="additional-video-title"> Chapter {index + 1} Trailer: {title} </span>
                             </button>
                         </li>
                     ))}
